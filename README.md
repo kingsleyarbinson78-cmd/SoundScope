@@ -78,6 +78,7 @@ For meaningful field comparisons, record at similar distances and orientations w
 | `audio_processing.py`            | WAV loading, sample generation, FFT, statistics, event detection, and CSV serialization |
 | `visualizations.py`              | Interactive Plotly waveform, spectrum, and comparison charts                            |
 | `requirements.txt`               | Python package version ranges                                                           |
+| `pandas`                          | Compatible data types used by Plotly's chart validation                                 |
 | `.streamlit/config.toml`         | Dark navy theme and cyan accent settings                                                |
 | `tests/test_audio_processing.py` | Tests for audio processing, event detection, and CSV output                             |
 | `tests/test_visualizations.py`   | Tests for comparison charts                                                             |
@@ -193,6 +194,7 @@ It means a group of short-time RMS frames crossed the configured relative thresh
 ## Common Problems
 
 - **`ModuleNotFoundError` for Streamlit or another package:** activate `.venv` and run `python -m pip install -r requirements.txt` from the project folder.
+- **A Plotly `AttributeError` while loading the app on Streamlit Community Cloud:** redeploy so the compatible pandas version in `requirements.txt` is installed.
 - **`streamlit: command not found`:** use `python -m streamlit run app.py` after activating `.venv`.
 - **Port 8501 is already in use:** stop the other Streamlit process with `Ctrl+C`, or start this app on another port with `python -m streamlit run app.py --server.port 8502`.
 - **The uploaded file is rejected:** use a non-empty, valid WAV file. This version only enables WAV uploads in the interface.

@@ -1,6 +1,18 @@
+import numpy as np
 import pytest
 
-from visualizations import create_comparison_figure
+from visualizations import create_comparison_figure, create_waveform_figure
+
+
+def test_waveform_figure_plots_each_channel_at_sample_times() -> None:
+	samples = np.array([[0.1, -0.1], [0.2, -0.2], [0.3, -0.3]])
+
+	figure = create_waveform_figure(samples, sample_rate=2)
+
+	assert len(figure.data) == 2
+	assert list(figure.data[0].x) == [0.0, 0.5, 1.0]
+	assert list(figure.data[0].y) == [0.1, 0.2, 0.3]
+	assert list(figure.data[1].y) == [-0.1, -0.2, -0.3]
 
 
 def test_comparison_figure_shows_three_measures_for_each_location() -> None:
